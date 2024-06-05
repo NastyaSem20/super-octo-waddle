@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if user_info %}
+        <p><strong>User ID:</strong> {{ user_info.user_id }}</p>
+        <p><strong>First Name:</strong> {{ user_info.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user_info.last_name }}</p>
+        <p><strong>Username:</strong> {{ user_info.username }}</p>
+        <p><strong>Phone:</strong> {{ user_info.phone }}</p>
+        {% if user_info.photos %}
+            <h2>Profile Photos</h2>
+            {% for photo in user_info.photos %}
+                <img src="{{ photo }}" alt="Profile Photo" />
+            {% endfor %}
+        {% else %}
+            <p>No profile photos found.</p>
+        {% endif %}
+    {% else %}
+        <p>User not found or invalid phone number.</p>
+    {% endif %}
+    <a href="{% url 'search_user' %}">Search again</a>
+</body>
+</html>
